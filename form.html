@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Form Submission</h1>
+    
+    <form id="userForm" action="submit_form.php" method="POST">
+        <label for="FirstName">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" required><br><br>
+
+        <label for="LastName">Last Name:</label>
+        <input type="text" id="LastName" name="LastName" required><br><br>
+
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" required><br><br>
+
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" required><br><br>
+
+        <label for="State">State:</label>
+        <select id="State" name="State" required>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Hawaii">Hawaii</option>
+            <option value="Idaho">Idaho</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option>
+            <option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option>
+            <option value="Maine">Maine</option>
+            <option value="Maryland">Maryland</option>
+            <option value="Massachusetts">Massachusetts</option>
+            <option value="Michigan">Michigan</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Mississippi">Mississippi</option>
+            <option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option>
+            <option value="Nebraska">Nebraska</option>
+            <option value="Nevada">Nevada</option>
+            <option value="New Hampshire">New Hampshire</option>
+            <option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="New York">New York</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="North Dakota">North Dakota</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Oregon">Oregon</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Rhode Island">Rhode Island</option>
+            <option value="South Carolina">South Carolina</option>
+            <option value="South Dakota">South Dakota</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Texas">Texas</option>
+            <option value="Utah">Utah</option>
+            <option value="Vermont">Vermont</option>
+            <option value="Virginia">Virginia</option>
+            <option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option>
+            <option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+        </select><br><br>
+
+        <label for="City">City:</label>
+        <input type="text" id="City" name="City" required><br><br>
+
+        <label for="ZipCode">Zip Code:</label>
+        <input type="text" id="ZipCode" name="ZipCode" required><br><br>
+
+        <label for="Address">Address:</label>
+        <input type="text" id="Address" name="Address" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="submissionStatus"></p>
+
+    <script>
+        $(document).ready(function () {
+            $('#userForm').on('submit', function (event) {
+                event.preventDefault();
+                $('#submissionStatus').text('Submitting form...');
+
+                $.post($(this).attr('action'), $(this).serialize(), function (response) {
+                    $('#submissionStatus').html(response);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
